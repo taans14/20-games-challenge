@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://87vooxa5vqjs"]
+
+[ext_resource type="Texture2D" uid="uid://biogynjr0qfsr" path="res://assets/objects/background-day.png" id="2_6e4gl"]
+
+[node name="Background" type="Node2D" unique_id=1104806257]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1795991376]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_6e4gl")
+centered = false

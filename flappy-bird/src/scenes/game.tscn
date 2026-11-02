@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bt6cfq172borv"]
+
+[ext_resource type="Script" uid="uid://bl4l1t4ewy0q1" path="res://src/scripts/game.gd" id="1_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cbxghlvx2ibxt" path="res://src/scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cpu88kec1ggg4" path="res://src/scenes/pipe.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dj72je32itgju" path="res://src/scenes/ground.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://csbo0867vj6as" path="res://src/scripts/pipe_spawner.gd" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://fcnwkskfy7ef" path="res://src/ui/start_menu.tscn" id="7_gh3at"]
+[ext_resource type="PackedScene" uid="uid://86h6i6s8cm4a" path="res://src/ui/game_over.tscn" id="8_flib5"]
+[ext_resource type="PackedScene" uid="uid://87vooxa5vqjs" path="res://src/scenes/background.tscn" id="9_6e0h8"]
+[ext_resource type="PackedScene" uid="uid://bs3u7j0hnel84" path="res://src/ui/score_hud.tscn" id="9_h2mn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
+size = Vector2(183.5, 550)
+
+[node name="Game" type="Node" unique_id=2058426675 node_paths=PackedStringArray("pipe_spawner", "pipe_despawner", "pipe_spawn_timer", "pipes", "start_menu", "score_hud", "game_over")]
+script = ExtResource("1_p57ef")
+pipe_spawner = NodePath("PipeSpawner")
+pipe_despawner = NodePath("PipeDespawner")
+pipe_spawn_timer = NodePath("PipeSpawnTimer")
+pipes = NodePath("Pipes")
+start_menu = NodePath("StartMenu")
+score_hud = NodePath("ScoreHUD")
+game_over = NodePath("GameOver")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=231522632]
+position = Vector2(216, 384)
+
+[node name="Background" parent="." unique_id=1104806257 instance=ExtResource("9_6e0h8")]
+
+[node name="Pipes" type="Node2D" parent="." unique_id=1859730859]
+position = Vector2(543, 0)
+
+[node name="Ground" parent="." unique_id=1078036001 instance=ExtResource("5_iywne")]
+position = Vector2(216, 726)
+
+[node name="Player" parent="." unique_id=1201839783 instance=ExtResource("2_yqjtg")]
+process_mode = 3
+position = Vector2(78, 162)
+
+[node name="PipeDespawner" type="Area2D" parent="." unique_id=356517793]
+position = Vector2(-216, 293)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeDespawner" unique_id=484194672]
+shape = SubResource("RectangleShape2D_p57ef")
+
+[node name="StartMenu" parent="." unique_id=1197089990 instance=ExtResource("7_gh3at")]
+metadata/_edit_lock_ = true
+
+[node name="ScoreHUD" parent="." unique_id=1922093527 instance=ExtResource("9_h2mn8")]
+visible = false
+digit_list = Array[String](["res://assets/ui/numbers/0.png", "res://assets/ui/numbers/1.png", "res://assets/ui/numbers/2.png", "res://assets/ui/numbers/3.png", "res://assets/ui/numbers/4.png", "res://assets/ui/numbers/5.png", "res://assets/ui/numbers/6.png", "res://assets/ui/numbers/7.png", "res://assets/ui/numbers/8.png", "res://assets/ui/numbers/9.png"])
+
+[node name="GameOver" parent="." unique_id=1022612744 instance=ExtResource("8_flib5")]
+process_mode = 2
+visible = false
+
+[node name="PipeSpawner" type="Node" parent="." unique_id=1932566750]
+script = ExtResource("6_p57ef")
+pipe = ExtResource("3_lnu2h")
+metadata/_custom_type_script = "uid://csbo0867vj6as"
+
+[node name="PipeSpawnTimer" type="Timer" parent="." unique_id=597447208]
+wait_time = 1.5
+autostart = true

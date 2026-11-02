@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cpu88kec1ggg4"]
+
+[ext_resource type="Texture2D" uid="uid://faijag3vda84" path="res://assets/objects/pipe-green.png" id="1_8x3ej"]
+[ext_resource type="Script" uid="uid://cxteuiw6hfrvr" path="res://src/scripts/pipe.gd" id="1_arpqm"]
+[ext_resource type="AudioStream" uid="uid://btpklvuqndki6" path="res://assets/sfx/point.ogg" id="3_8p0di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arpqm"]
+size = Vector2(4.333332, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x3ej"]
+size = Vector2(48.000046, 1735.3335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8p0di"]
+size = Vector2(49.333336, 320.00006)
+
+[node name="Pipe" type="Node2D" unique_id=284444632 node_paths=PackedStringArray("collision_zone", "score_zone", "pipe_audio_stream")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_arpqm")
+collision_zone = NodePath("CollisionZone")
+score_zone = NodePath("ScoreZone")
+pipe_audio_stream = NodePath("PipeAudioStream")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=424496764]
+metadata/_edit_group_ = true
+
+[node name="BottomPipe" type="Sprite2D" parent="Pivot" unique_id=1137646996]
+position = Vector2(0, 220)
+texture = ExtResource("1_8x3ej")
+
+[node name="TopPipe" type="Sprite2D" parent="Pivot" unique_id=728088352]
+position = Vector2(0, -220)
+rotation = -3.1415925
+texture = ExtResource("1_8x3ej")
+
+[node name="ScoreZone" type="Area2D" parent="." unique_id=2092299970]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone" unique_id=939950066]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_arpqm")
+
+[node name="CollisionZone" type="Area2D" parent="." unique_id=439397435]
+collision_layer = 2
+
+[node name="TopCollisionShape" type="CollisionShape2D" parent="CollisionZone" unique_id=1888411612]
+position = Vector2(0.00010579772, -927.6667)
+rotation = -3.1415925
+shape = SubResource("RectangleShape2D_8x3ej")
+
+[node name="BottomCollisionShape" type="CollisionShape2D" parent="CollisionZone" unique_id=322538108]
+position = Vector2(1.3113022e-06, 220.66669)
+shape = SubResource("RectangleShape2D_8p0di")
+
+[node name="PipeAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=847106111]
+stream = ExtResource("3_8p0di")

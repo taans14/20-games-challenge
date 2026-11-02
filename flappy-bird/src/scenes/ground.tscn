@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dj72je32itgju"]
+
+[ext_resource type="Script" uid="uid://b0cq8oa4mwsxm" path="res://src/scripts/ground.gd" id="1_4v0mv"]
+[ext_resource type="Texture2D" uid="uid://dvt3ymxotwebf" path="res://assets/objects/base.png" id="1_yh8r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v0mv"]
+size = Vector2(505, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28f1n"]
+size = Vector2(20, 662)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yh8r4"]
+size = Vector2(336, 110)
+
+[node name="Ground" type="StaticBody2D" unique_id=1078036001 node_paths=PackedStringArray("ground_arr", "warp_area")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_4v0mv")
+ground_arr = [NodePath("SpriteArea1"), NodePath("SpriteArea2"), NodePath("SpriteArea3")]
+warp_area = NodePath("WarpArea")
+
+[node name="SpriteArea1" type="Area2D" parent="." unique_id=1644294000]
+position = Vector2(-504, 0)
+
+[node name="Sprite1" type="Sprite2D" parent="SpriteArea1" unique_id=1482997946]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_yh8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteArea1" unique_id=225371710]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4v0mv")
+
+[node name="SpriteArea2" type="Area2D" parent="." unique_id=59779531]
+
+[node name="Sprite2" type="Sprite2D" parent="SpriteArea2" unique_id=1592824125]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_yh8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteArea2" unique_id=1567887828]
+shape = SubResource("RectangleShape2D_4v0mv")
+
+[node name="SpriteArea3" type="Area2D" parent="." unique_id=500407096]
+position = Vector2(504, 0)
+
+[node name="Sprite3" type="Sprite2D" parent="SpriteArea3" unique_id=247887308]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_yh8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteArea3" unique_id=2095451283]
+shape = SubResource("RectangleShape2D_4v0mv")
+
+[node name="WarpArea" type="Area2D" parent="." unique_id=727574630]
+position = Vector2(-811, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpArea" unique_id=1271238106]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_28f1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975719634]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_yh8r4")
